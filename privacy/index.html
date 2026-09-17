@@ -61,7 +61,7 @@
 <p><strong>시행일:</strong> 2026-08-01<br>
 <strong>최종 개정일:</strong> 2026-08-01</p>
 
-<p>LIM SEUNG YOUNG(이하 "회사")은 「개인정보 보호법」 및 관련 법령을 준수하며, 정보주체(이용자)의 개인정보를 보호하기 위해 다음과 같이 개인정보처리방침을 수립·공개합니다.</p>
+<p>페블웍스(이하 "회사")는 「개인정보 보호법」 및 관련 법령을 준수하며, 개인정보 보호책임자 임승용을 통해 정보주체(이용자)의 개인정보를 보호하기 위해 다음과 같이 개인정보처리방침을 수립·공개합니다.</p>
 
 <p>이 방침은 회사가 제공하는 모바일 애플리케이션 <strong>Inbox</strong>(이하 "서비스")에 적용됩니다. Inbox는 이용자가 저장한 메모(텍스트, URL, 이미지·파일 첨부)를 인공지능(AI)이 분석해 제목·요약·태그·분류를 자동으로 정리해 주는 개인용 정보 정리 서비스입니다.</p>
 
@@ -82,6 +82,7 @@
 <tr><td>계정 정보 (이메일 가입)</td><td>이메일 주소, 비밀번호</td><td>회원가입 시 이용자 입력</td></tr>
 <tr><td>계정 정보 (Google 로그인)</td><td>이메일 주소, 이름, 프로필 이미지(제공되는 경우)</td><td>Google 계정 연동 시</td></tr>
 <tr><td>이용자 콘텐츠</td><td>이용자가 작성·저장한 메모의 텍스트, URL, 이미지·파일 첨부물</td><td>서비스 이용 중 이용자 입력</td></tr>
+<tr><td>YouTube 공개 자막</td><td>저장한 YouTube URL에서 추출한 영상 ID, 공개 자막 텍스트, 자막 요청에 필요한 기술 정보</td><td>iOS 앱이 로그인 정보·쿠키 없이 YouTube에 공개 자막을 요청. 영상·음성 파일은 내려받지 않음</td></tr>
 </tbody>
 </table>
 </div>
@@ -99,9 +100,9 @@
 <tr><th>구분</th><th>항목</th><th>생성 방식</th></tr>
 </thead>
 <tbody>
-<tr><td>AI 분석 결과</td><td>메모의 제목, 요약, 태그, 분류(카테고리), 첨부 이미지에서 추출한 텍스트(OCR)</td><td>이용자 콘텐츠를 AI가 분석해 생성</td></tr>
-<tr><td>구독 정보</td><td>Apple 거래·상품 식별자, 구독 등급·상태·기간, 구매·복원 처리 이력</td><td>검증된 Apple 구독 거래에서 생성</td></tr>
-<tr><td>이용 정보</td><td>구독 등급별 월간 AI 분석 사용량과 남은 한도</td><td>서비스 기능 사용 시 생성</td></tr>
+<tr><td>AI 분석 결과</td><td>메모의 제목, 요약, 태그, 분류(카테고리), 첨부 이미지의 분석 결과</td><td>원본 입력, 이용자 메모, Jina가 읽은 공개 URL 본문, YouTube 공개 자막 또는 허용된 이미지를 Apple Private Cloud Compute(PCC)가 분석해 생성</td></tr>
+<tr><td>Apple 이용권 정보</td><td>Apple 거래·상품 식별자, monthly/lifetime/legacy 이용권의 상태·기간, 구매·복원·환불 처리 이력</td><td>검증된 Apple 거래, Apple Server API 및 서명 알림에서 생성</td></tr>
+<tr><td>이용 정보</td><td>성공한 일반 PCC 분석 횟수와 무료 잔여 횟수</td><td>서비스 기능 사용 시 생성</td></tr>
 <tr><td>진단 정보</td><td>충돌 정보, 앱 버전, 운영체제 정보와 오류 진단 정보</td><td>Release 앱에서 오류가 발생할 때 생성</td></tr>
 <tr><td>삭제 처리 정보</td><td>삭제 작업 상태, 재시도 횟수, 완료 시각, 복구 영수증 해시</td><td>메모·계정 삭제 요청 처리 중 생성</td></tr>
 </tbody>
@@ -146,8 +147,8 @@
 <ol>
 <li><strong>회원 식별 및 인증</strong> — 회원가입, 로그인, 본인 계정 식별, 세션 유지</li>
 <li><strong>서비스 제공</strong> — 이용자가 저장한 메모의 저장·조회·검색·편집·삭제</li>
-<li><strong>AI 자동 정리 기능 제공</strong> — 메모의 제목·요약·태그·분류 생성, 첨부 이미지의 텍스트 추출(OCR), 이용자가 저장한 URL의 내용 분석</li>
-<li><strong>유료 구독 제공</strong> — Apple 구독 구매 검증, 이용 등급·사용량 적용, 구매 복원과 상태 동기화</li>
+<li><strong>AI 자동 정리 기능 제공</strong> — Apple PCC를 통한 메모의 제목·요약·태그·분류와 허용된 이미지 분석, Jina가 읽은 공개 URL 본문 및 iOS 앱이 읽은 YouTube 공개 자막 분석</li>
+<li><strong>Apple 이용권 제공</strong> — 무료 성공 분석 10회 적용, monthly/lifetime 및 기존 legacy 이용권의 Apple 구매 검증, 구매 복원과 상태 동기화</li>
 <li><strong>서비스 운영 및 문의 대응</strong> — 오류·충돌 진단, 가입·계정 복구 안내 메일, 이용자 문의, 메모·계정 삭제 요청 처리</li>
 </ol>
 
@@ -188,7 +189,7 @@
 <p>회사는 개인정보를 판매하지 않으며, 광고·마케팅 목적의 제3자 제공을 하지 않습니다.</p>
 </blockquote>
 
-<p>Apple App Store 결제는 Apple과 이용자 사이에서 Apple의 약관과 개인정보 처리 기준에 따라 이루어집니다. 회사는 카드·은행계좌 정보를 받지 않고, 검증 가능한 최소 거래 메타데이터만 받아 구독 상태를 적용합니다.</p>
+<p>Apple App Store 결제는 Apple과 이용자 사이에서 Apple의 약관과 개인정보 처리 기준에 따라 이루어집니다. 회사는 카드·은행계좌 정보를 받지 않고, 검증 가능한 최소 거래 메타데이터만 받아 monthly/lifetime 또는 기존 legacy 이용권 상태를 적용합니다.</p>
 
 <hr>
 
@@ -202,17 +203,22 @@
 <tr><th>수탁자</th><th>위탁 업무 내용</th><th>처리(전송)되는 정보</th><th>처리 국가/리전</th></tr>
 </thead>
 <tbody>
-<tr><td>Supabase Inc.</td><td>데이터베이스, 회원 인증, Edge Function, 첨부 파일 저장</td><td>계정 정보, 이용자 콘텐츠, AI 분석 결과, 구독·삭제 처리 정보</td><td>데이터 저장: <strong>대한민국(서울, ap-northeast-2)</strong> / 회사 소재지: 미국</td></tr>
-<tr><td>Google LLC (Gemini API)</td><td>메모 내용·URL 내용·첨부 이미지에 대한 AI 분석 및 텍스트 추출(OCR)</td><td>메모 텍스트, 저장한 URL에서 가져온 내용, 첨부 이미지 바이트</td><td>미국</td></tr>
-<tr><td>Jina AI GmbH (URL 리더, 2025-10 Elastic N.V. 인수)</td><td>이용자가 저장한 URL의 내용 읽기(가져오기)</td><td>이용자가 저장한 URL</td><td>독일(EU)·미국</td></tr>
-<tr><td>Resend, Inc.</td><td>가입·계정 복구 안내 메일 발송</td><td>수신 이메일 주소, 메일 제목·본문과 복구 링크</td><td>미국</td></tr>
+<tr><td>Supabase Pte. Ltd. (공개 기본 계약조건 기준)</td><td>데이터베이스, 회원 인증, Edge Function, 첨부 파일 저장</td><td>계정 정보, 이용자 콘텐츠, AI 분석 결과, 구독·삭제 처리 정보</td><td>주 데이터 저장: <strong>대한민국(서울, ap-northeast-2)</strong> / 계약 법인 소재지: <strong>싱가포르</strong> / 국외 지원 접근: 가능(접근 국가 목록 미확정)</td></tr>
+<tr><td>Apple Inc. (Private Cloud Compute)</td><td>일반 텍스트·URL·이미지와 YouTube 공개 자막의 AI 분석</td><td>분석에 필요한 원본 입력, 이용자 메모, 원본 URL, Jina 본문, YouTube 공개 자막, 허용된 이미지</td><td>Apple은 PCC 노드가 위치한 국가·지역의 전체 목록을 공개하지 않습니다.</td></tr>
+<tr><td>Google LLC (YouTube)</td><td>iOS 앱의 공개 자막 요청·읽기</td><td>YouTube 영상 ID와 자막 요청에 필요한 기술 정보. Inbox 계정·이메일·이용자 메모·첨부 및 영상·음성 파일은 포함하지 않음</td><td>Google 개인정보처리방침에 따라 전 세계 서버에서 처리될 수 있음(자막 요청에 적용되는 개별 국가 목록은 공개되지 않음)</td></tr>
+<tr><td>Jina Reader (Elastic 데이터 처리 조건 적용)</td><td>이용자가 저장한 공개 URL의 내용 읽기</td><td>이용자가 저장한 URL</td><td>Reader 서비스에 적용되는 계약 법인과 처리 국가의 전체 범위는 공급자의 공개 자료만으로 특정되지 않습니다.</td></tr>
+<tr><td>Plus Five Five, Inc. (Resend)</td><td>가입·계정 복구 안내 메일 발송</td><td>수신 이메일 주소, 메일 제목·본문과 복구 링크</td><td>미국</td></tr>
 <tr><td>Functional Software, Inc. (Sentry)</td><td>Release 앱 충돌 진단</td><td>충돌 정보, 앱 버전, 운영체제와 오류 진단 정보</td><td>미국</td></tr>
 </tbody>
 </table>
 </div>
 
 <blockquote>
-<p>Supabase 데이터 저장 리전은 <strong>대한민국(서울, ap-northeast-2)</strong>으로, 이용자 데이터는 국내에 저장됩니다. 다만 운영사(Supabase Inc.)는 미국 법인이며 운영·기술지원 과정에서 국외(미국)에서의 접근이 발생할 수 있어, 이 부분은 제6항(국외 이전)에서 별도로 안내합니다.</p>
+<p>Supabase 프로젝트의 주 데이터 저장 리전은 <strong>대한민국(서울, ap-northeast-2)</strong>입니다. 공개 기본 계약조건상 계약 법인은 싱가포르 소재 Supabase Pte. Ltd.이며, 국외 운영·기술지원 접근이 발생할 수 있습니다. 다만 실제 개별 계약과 지원 접근 국가 목록은 확인되지 않아 제6항에서 그 한계를 함께 안내합니다.</p>
+</blockquote>
+
+<blockquote>
+<p>일반 AI 분석은 Google Gemini API로 자동 전환되지 않습니다. PCC가 지원되지 않거나 준비되지 않았거나 네트워크·quota·콘텐츠 제한으로 처리할 수 없으면 원본을 보존하고 실패 상태를 표시합니다. YouTube는 공개 자막을 읽은 경우에만 그 자막 텍스트를 PCC로 분석하며, 영상·음성 파일을 Gemini에 보내는 기능은 현재 활성화되어 있지 않습니다.</p>
 </blockquote>
 
 <p>위탁 계약 시 회사는 개인정보가 안전하게 관리되도록 관련 사항을 규정하고 수탁자를 관리·감독합니다. 위탁 업무 내용이나 수탁자가 변경될 경우 본 방침을 통해 공개합니다.</p>
@@ -221,7 +227,7 @@
 
 <h2>6. 개인정보의 국외 이전</h2>
 
-<p>서비스의 핵심 기능(AI 분석, URL 내용 분석, 메일 발송, 충돌 진단)은 국외 사업자의 처리가 필요하며, 이에 따라 다음과 같이 개인정보가 국외로 이전됩니다. 회사는 이용자와 체결한 이용계약의 이행을 위해 위 처리위탁이 필요한 경우로서, 「개인정보 보호법」 제28조의8제1항제3호 가목에 따라 같은 조 제2항 각 호의 사항을 본 처리방침에 공개함으로써 국외로 이전합니다.</p>
+<p>서비스의 핵심 기능(PCC 분석, YouTube 공개 자막 취득, URL 내용 읽기, 메일 발송, 충돌 진단)은 국외 사업자의 처리가 필요하며, 이에 따라 다음과 같이 개인정보가 국외로 이전됩니다. 회사는 이용자와 체결한 이용계약의 이행을 위해 위 처리위탁이 필요한 경우로서, 「개인정보 보호법」 제28조의8제1항제3호 가목에 따라 같은 조 제2항 각 호의 사항을 본 처리방침에 공개함으로써 국외로 이전합니다.</p>
 
 <div class="table-wrap">
 <table>
@@ -229,17 +235,18 @@
 <tr><th>이전받는 자</th><th>연락처</th><th>이전 국가</th><th>이전 일시·방법</th><th>이전 항목</th><th>이전 목적</th><th>보유·이용 기간</th></tr>
 </thead>
 <tbody>
-<tr><td>Google LLC (Gemini API)</td><td>1600 Amphitheatre Parkway, Mountain View, CA 94043, USA · 개인정보 문의 https://policies.google.com/privacy</td><td>미국</td><td>이용자가 메모를 저장·분석 요청하는 시점에 네트워크(API)를 통해 전송</td><td>메모 텍스트, 저장한 URL에서 가져온 내용, 첨부 이미지 바이트</td><td>AI 분석(제목·요약·태그·분류) 및 이미지 텍스트 추출(OCR)</td><td>분석 요청 처리에 필요한 기간 동안만 처리하며, 프롬프트·응답을 모델 학습·제품 개선에 사용하지 않습니다(Gemini API 유료 등급). 정책위반(남용) 탐지 목적의 일시적 로그만 제한적으로 보관됩니다(고정 기간 미공개).</td></tr>
-<tr><td>Jina AI GmbH (URL 리더, 2025-10 Elastic N.V. 인수)</td><td>Prinzessinnenstraße 19-20, 10969 Berlin, Germany · legal@jina.ai</td><td>독일(EU)·미국 (EU 외 이전 시 표준계약조항(SCC)/EU-US DPF 적용)</td><td>이용자가 URL을 저장하는 시점에 네트워크를 통해 전송</td><td>이용자가 저장한 URL</td><td>해당 URL의 내용을 읽어 AI 분석에 활용</td><td>로그 약 7일, 애플리케이션 데이터 약 6~18개월(용도별 상이); 익명·가명화 후 사업 목적 활용 가능.</td></tr>
-<tr><td>Supabase Inc.</td><td>privacy@supabase.com</td><td>데이터 저장: <strong>대한민국(서울)</strong> / 운영사 소재지: <strong>미국</strong>(운영·기술지원 시 접근)</td><td>데이터 저장·인증·서버 처리 시 암호화 통신</td><td>계정 정보, 이용자 콘텐츠, AI 분석 결과, 구독·삭제 처리 정보</td><td>데이터 저장·인증·파일·서버 처리</td><td>제3항의 각 정보별 기간</td></tr>
-<tr><td>Resend, Inc.</td><td>privacy@resend.com</td><td>미국</td><td>가입·계정 복구 안내 메일 발송 시 암호화된 API 통신</td><td>수신 이메일 주소, 메일 제목·본문과 복구 링크</td><td>이메일 발송과 장애 대응</td><td>발송과 장애 대응에 필요한 기간 및 공급자 정책에 따른 기간</td></tr>
+<tr><td>Apple Inc. (Private Cloud Compute)</td><td><a href="https://www.apple.com/legal/privacy/data/en/intelligence-engine/">Apple Intelligence 및 개인정보 보호</a></td><td>Apple은 PCC 노드가 위치한 국가·지역의 전체 목록을 공개하지 않습니다.</td><td>이용자가 일반 메모·URL·이미지 또는 YouTube 자막 분석 처리를 실행할 때 암호화된 통신으로 전송</td><td>분석에 필요한 원본 입력, 이용자 메모, 원본 URL, Jina 본문, YouTube 공개 자막, 허용된 이미지</td><td>제목·요약·태그·분류 및 허용된 이미지 분석</td><td>요청 내용과 결과는 응답 후 PCC에 보관되지 않습니다. 요청 내용·결과를 포함하지 않는 제한된 익명 운영 정보의 보유기간은 공개되지 않았습니다. INBOX가 저장하는 이용자 노트와 AI 분석 결과는 별도로 제3항의 보관정책을 따릅니다.</td></tr>
+<tr><td>Google LLC (YouTube)</td><td>1600 Amphitheatre Parkway, Mountain View, CA 94043, USA · <a href="https://policies.google.com/privacy">Google 개인정보처리방침</a></td><td>Google 개인정보처리방침에 따라 전 세계 서버에서 처리될 수 있음(자막 요청에 적용되는 개별 국가 목록은 공개되지 않음)</td><td>이용자가 YouTube URL 분석을 요청할 때 iOS 앱이 네트워크로 전송</td><td>YouTube 영상 ID와 자막 요청에 필요한 기술 정보</td><td>공개 자막 요청·수신</td><td><a href="https://policies.google.com/technologies/retention?hl=en-US">Google 보존 정책</a>의 데이터 유형·처리 목적·이용 설정별 보유·삭제 기준에 따름. 로그인하지 않은 자막 요청의 항목별 고정 기간은 공개되지 않음</td></tr>
+<tr><td>Jina Reader (Elastic 데이터 처리 조건 적용)</td><td><a href="https://jina.ai/legal">Jina AI 법적 정보</a></td><td>Reader 서비스에 적용되는 계약 법인과 처리 국가의 전체 범위는 공급자의 공개 자료만으로 특정되지 않습니다.</td><td>이용자가 공개 URL 분석을 요청할 때 네트워크로 전송</td><td>이용자가 저장한 URL</td><td>해당 공개 URL의 내용을 읽어 PCC 분석 입력으로 제공</td><td>회사는 URL 읽기 요청에 DNT 옵션을 사용하여 Reader가 해당 요청을 캐시하거나 서버 로그로 남기지 않도록 요청합니다. 계정·과금·보안 관련 정보의 보유는 별도 공급자 정책에 따르며, 항목별 기간은 현재 공개 자료만으로 확인되지 않습니다.</td></tr>
+<tr><td>Supabase Pte. Ltd. (공개 기본 계약조건 기준)</td><td><a href="https://supabase.com/legal/customer-resources/data-processing-addendum">Supabase DPA</a> · <a href="https://supabase.com/terms">Supabase 이용약관</a> · privacy@supabase.io</td><td>주 데이터 저장: <strong>대한민국(서울, ap-northeast-2)</strong> / 계약 법인 소재지: <strong>싱가포르</strong> / 국외 지원 접근: 가능(접근 국가 목록 미확정)</td><td>데이터 저장·인증·서버 처리 시 암호화 통신</td><td>계정 정보, 이용자 콘텐츠, AI 분석 결과, 구독·삭제 처리 정보</td><td>데이터 저장·인증·파일·서버 처리</td><td>제3항의 각 정보별 기간</td></tr>
+<tr><td>Plus Five Five, Inc. (Resend)</td><td><a href="https://resend.com/legal/dpa">Resend DPA</a> · privacy@resend.com</td><td>미국</td><td>가입·계정 복구 안내 메일 발송 시 암호화된 API 통신</td><td>수신 이메일 주소, 메일 제목·본문과 복구 링크</td><td>이메일 발송과 장애 대응</td><td>발송과 장애 대응에 필요한 기간 및 공급자 정책에 따른 기간</td></tr>
 <tr><td>Functional Software, Inc. (Sentry)</td><td>legal@sentry.io</td><td>미국</td><td>Release 앱에서 충돌 발생 시 SDK를 통한 암호화 통신</td><td>충돌 정보, 앱 버전, 운영체제와 오류 진단 정보</td><td>충돌 원인 분석과 안정성 개선</td><td>목표 최대 30일</td></tr>
 </tbody>
 </table>
 </div>
 
 <blockquote>
-<p><strong>이전 거부의 방법·절차 및 효과(제28조의8제2항제5호):</strong> 이용자는 국외 이전을 원하지 않을 경우 ① 해당 메모를 저장·분석하지 않거나, ② 제10항의 연락처로 처리정지를 요청하거나, ③ 계정 삭제를 통해 이전을 거부·중단할 수 있습니다. 다만 AI 분석·URL 내용 분석·메일 발송·충돌 진단 등 해당 기능의 이용이 제한될 수 있습니다.</p>
+<p><strong>이전 거부의 방법·절차 및 효과(제28조의8제2항제5호):</strong> 이용자는 국외 이전을 원하지 않을 경우 ① 해당 메모·URL·YouTube 자막 분석을 요청하지 않거나, ② 제10항의 연락처로 처리정지를 요청하거나, ③ 계정 삭제를 통해 이전을 거부·중단할 수 있습니다. 다만 PCC 분석·URL 내용 읽기·YouTube 공개 자막 취득·메일 발송·충돌 진단 등 해당 기능의 이용이 제한될 수 있습니다.</p>
 </blockquote>
 
 <hr>
@@ -298,10 +305,16 @@
 <p>개인정보 처리에 관한 문의, 불만, 권리 행사는 아래로 연락하실 수 있습니다.</p>
 
 <ul>
-<li><strong>개인정보 보호책임자:</strong> LIM SEUNG YOUNG</li>
+<li><strong>개인정보 보호책임자:</strong> 임승용</li>
 <li><strong>연락처(이메일):</strong> pri1038@naver.com</li>
-<li><strong>서비스 제공자/사업자명:</strong> LIM SEUNG YOUNG</li>
-<li><strong>권리 행사·문의 접수:</strong> 위 이메일로 접수하며, 개인정보 보호책임자가 직접 처리합니다. (개인 개발자 운영 서비스로 별도 전화 창구는 두지 않으며, 모든 문의·권리행사는 이메일로 처리합니다.)</li>
+<li><strong>연락처(전화):</strong> 010-6324-1038</li>
+<li><strong>서비스 제공자/사업자명:</strong> 페블웍스</li>
+<li><strong>대표자:</strong> 임승용</li>
+<li><strong>사업자등록번호:</strong> 421-39-01303</li>
+<li><strong>사업장 주소:</strong> 서울시 중랑구 동일로 754 우성타운 5동 103호</li>
+<li><strong>통신판매업신고번호:</strong> 제2026-서울중랑-1140호</li>
+<li><strong>신고기관:</strong> 중랑구청</li>
+<li><strong>권리 행사·문의 접수:</strong> 위 연락처로 접수하며, 개인정보 보호책임자가 직접 처리합니다.</li>
 </ul>
 
 <p>이용자는 개인정보 침해에 대한 상담·신고가 필요한 경우 아래 기관에 문의할 수 있습니다.</p>
